@@ -10,7 +10,7 @@ class App extends React.Component {
       <View style={styles.container}>
       <Text>wwe</Text>
       <NewDeckView></NewDeckView>
-      <NewQuestionView></NewQuestionView>
+
 
       
       </View>
