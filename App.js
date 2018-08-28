@@ -1,13 +1,18 @@
 import React from 'react'
 import { StyleSheet, Text, View, TextInput } from 'react-native'
+import NewQuestionView from './components/NewQuestionView'
+import NewDeckView from './components/NewDeckView'
 
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text>wcw</Text>
+      <Text>wwe</Text>
+      <NewDeckView></NewDeckView>
+      <NewQuestionView></NewQuestionView>
 
+      
       </View>
     );
   }
@@ -21,3 +26,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default (App)
