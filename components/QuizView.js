@@ -5,41 +5,39 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 class QuizView extends Component {
 
     state = { 
-        cardQuestion: '',
-        viewAnswer: true
+        cardQuestion: 'Question',
+        cardAnswer: 'Answer',
+        viewAnswer: true,
+        cardNumber: 0,
+        numberOfCards: 0,
+        percentageCorrect: 0
     }
 
   render() {
     return (
     <View>
-        <Text>cardQuestion</Text>
+        <Text>{this.state.cardNumber} / {this.state.numberOfCards} </Text>
+        {this.state.viewAnswer === true ? <Text>{this.state.cardQuestion}</Text> : <Text>{this.state.cardAnswer}</Text>} 
         <TouchableOpacity>
         {this.state.viewAnswer === true ? <Text style={styles.smallButtonText}>Answer</Text> : <Text style={styles.smallButtonText}>Question</Text>}        
         </TouchableOpacity>
+        <TouchableOpacity style={styles.correctButton}><Text>Correct</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.inCorrectButton}><Text>Incorrect</Text></TouchableOpacity>
     </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    textInput: 
-    {
-        height: 40,
-        width: 100,
-        borderColor: 'gray',
-        borderWidth: 1,
-        margin:5,
-        borderRadius:10
+    correctButton: {
+        backgroundColor:'green'
     },
-    button: {
-        backgroundColor:'blue'
-      },
+    inCorrectButton: {
+        backgroundColor:'red'
+    },
     smallButtonText: {
         textAlign:'center',
         color:'red',
-    },
-    text: {
-        textAlign:'center',
     }
   })
   
