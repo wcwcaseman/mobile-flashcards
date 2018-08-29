@@ -4,6 +4,7 @@ import NewQuestionView from './components/NewQuestionView'
 import NewDeckView from './components/NewDeckView'
 import QuizView from './components/QuizView'
 import IndividualDeckView from './components/IndividualDeckView'
+import DeckListView from './components/DeckListView'
 
 
 class App extends React.Component {
@@ -11,7 +12,7 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
       <Text>www</Text>
-      <IndividualDeckView></IndividualDeckView>
+      <DeckListView></DeckListView>
       </View>
     );
   }
