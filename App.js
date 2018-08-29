@@ -2,17 +2,15 @@ import React from 'react'
 import { StyleSheet, Text, View, TextInput } from 'react-native'
 import NewQuestionView from './components/NewQuestionView'
 import NewDeckView from './components/NewDeckView'
+import QuizView from './components/QuizView'
 
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text>wwe</Text>
-      <NewDeckView></NewDeckView>
-
-
-      
+      <Text>wwexxxwcwAWAecwawaaaaaaaaaaa</Text>
+      <QuizView></QuizView>
       </View>
     );
   }
