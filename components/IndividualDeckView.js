@@ -10,9 +10,16 @@ class IndividualDeckView extends Component {
     }
 
     render() {
+
+    /* 2. Get the param, provide a fallback value if not available */
+    const { navigation } = this.props;
+    const title = navigation.getParam('title')
+
+
+
         return (
         <View>
-            <Text>{this.state.deckName}</Text>
+            <Text>{title}</Text>
             <Text>{this.state.numberOfCards} cards</Text>
             <TouchableOpacity style={styles.addCardButton}><Text>Add Card</Text></TouchableOpacity>
             <TouchableOpacity style={styles.startQuizButton}><Text style={styles.startQuizButtonText} >Start Quiz</Text></TouchableOpacity>

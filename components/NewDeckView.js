@@ -2,10 +2,30 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 
 
+//Once the new deck is submited route to the IndividualDeckView
+
 class NewDeckView extends Component {
   state = { 
     title: ''
 };
+
+
+
+submit = () => {
+
+  // Update Redux
+  //this.props.dispatch(addDeck(this.state.title))
+
+  //reset state
+  //this.setState(() => ({ title: '' }))
+
+  // Navigate to home
+  this.props.navigation.navigate('IndividualDeckView', {title: this.state.title});
+
+  // Save to "DB"
+   // submitEntry({ key, entry })
+}
+
   render() {
     return (
     <View>
@@ -15,7 +35,7 @@ class NewDeckView extends Component {
           onChangeText={(title) => this.setState({title})}
           value={this.state.title}
           />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={this.submit}>
             <Text style={styles.buttonText}>Submit</Text>
         </TouchableOpacity>
     </View>

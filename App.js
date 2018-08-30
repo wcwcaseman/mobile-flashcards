@@ -18,18 +18,20 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
 
 
 const Tabs = createMaterialTopTabNavigator({
-  NewDeckView: {
-    screen: NewDeckView,
-    navigationOptions: {
-      tabBarLabel: 'NewDeckView',
-    },
-  },
+
   DeckListView: {
     screen: DeckListView,
     navigationOptions: {
       tabBarLabel: 'DeckListView',
     }
+  },
+  NewDeckView: {
+    screen: NewDeckView,
+    navigationOptions: {
+      tabBarLabel: 'NewDeckView',
+    }
   }
+
 }, {
   navigationOptions: {
     header: <Text style={{flex: 1}}>Hello</Text>,
@@ -42,9 +44,9 @@ const Tabs = createMaterialTopTabNavigator({
   },
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? 'purple' : 'red',
+    activeTintColor: Platform.OS === 'ios' ? 'purple' : 'white',
     style: {
-      backgroundColor: Platform.OS === 'ios' ? 'red' : 'purple',
+      backgroundColor: Platform.OS === 'ios' ? 'white' : 'purple',
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
@@ -56,6 +58,7 @@ const Tabs = createMaterialTopTabNavigator({
   }
 })
 
+//Home is the built in default screen 
 const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
@@ -63,10 +66,25 @@ const MainNavigator = createStackNavigator({
       header: null
     } 
   },
-
-
+  IndividualDeckView: {
+    screen: IndividualDeckView,
+    navigationOptions: {
+      header: null
+    } 
+  },
+  NewQuestionView: {
+    screen: NewQuestionView,
+    navigationOptions: {
+      header: null
+    } 
+  },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: {
+      header: null
+    } 
+  }
 })
-
 
 
 class App extends React.Component {
