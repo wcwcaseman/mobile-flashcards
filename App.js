@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Text>www</Text>
+      <Text>wwwzzz</Text>
       <DeckListView></DeckListView>
       </View>
     );
