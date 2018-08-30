@@ -9,6 +9,19 @@ class IndividualDeckView extends Component {
         numberOfCards: 0
     }
 
+    submitAddCard = () => {
+
+        //Navigate to the New card view/ New question view... need to pass in what deck
+        this.props.navigation.navigate('NewQuestionView');
+
+    }
+
+    submitStartQuiz = () => {
+        ///need to pass in what deck
+        this.props.navigation.navigate('QuizView');
+    }
+
+
     render() {
 
     /* 2. Get the param, provide a fallback value if not available */
@@ -21,8 +34,8 @@ class IndividualDeckView extends Component {
         <View>
             <Text>{title}</Text>
             <Text>{this.state.numberOfCards} cards</Text>
-            <TouchableOpacity style={styles.addCardButton}><Text>Add Card</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.startQuizButton}><Text style={styles.startQuizButtonText} >Start Quiz</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.submitAddCard} style={styles.addCardButton}><Text>Add Card</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.submitStartQuiz} style={styles.startQuizButton}><Text style={styles.startQuizButtonText} >Start Quiz</Text></TouchableOpacity>
         </View>
         );
       }

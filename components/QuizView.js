@@ -13,6 +13,12 @@ class QuizView extends Component {
         percentageCorrect: 0
     }
 
+    submitCorrect = () => {
+    }
+
+    submitIncorrect = () => {
+    }
+
   render() {
     return (
     <View>
@@ -21,8 +27,8 @@ class QuizView extends Component {
         <TouchableOpacity>
         {this.state.viewAnswer === true ? <Text style={styles.smallButtonText}>Answer</Text> : <Text style={styles.smallButtonText}>Question</Text>}        
         </TouchableOpacity>
-        <TouchableOpacity style={styles.correctButton}><Text>Correct</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.inCorrectButton}><Text>Incorrect</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.submitCorrect} style={styles.correctButton}><Text>Correct</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.submitIncorrect} style={styles.inCorrectButton}><Text>Incorrect</Text></TouchableOpacity>
     </View>
     );
   }
