@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-
+import { addDeck } from '../actions'
 
 //Once the new deck is submited route to the IndividualDeckView
 
@@ -14,10 +15,14 @@ class NewDeckView extends Component {
 submit = () => {
 
   // Update Redux
-  //this.props.dispatch(addDeck(this.state.title))
+  this.props.dispatch(addDeck(
+    {
+      title: this.state.title,
+      numberOfCards: 0   
+    }))
 
   //reset state
-  //this.setState(() => ({ title: '' }))
+  this.setState(() => ({ title: '' }))
 
   // Navigate to home
   this.props.navigation.navigate('IndividualDeckView', {title: this.state.title});
@@ -65,4 +70,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default (NewDeckView)
+export default connect()(NewDeckView)

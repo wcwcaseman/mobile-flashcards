@@ -7,6 +7,9 @@ import IndividualDeckView from './components/IndividualDeckView'
 import DeckListView from './components/DeckListView'
 import {createStackNavigator, createDrawerNavigator, createMaterialTopTabNavigator} from 'react-navigation';
 import { Constants } from 'expo'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -90,10 +93,12 @@ const MainNavigator = createStackNavigator({
 class App extends React.Component {
   render() {
     return (
-    <View style={{flex: 1}}>
-      <UdaciStatusBar backgroundColor={'purple'} barStyle="light-content" />
-      <MainNavigator style={styles.container}/>
-    </View>
+    <Provider store={createStore(reducer)}>
+      <View style={{flex: 1}}>
+        <UdaciStatusBar backgroundColor={'purple'} barStyle="light-content" />
+        <MainNavigator style={styles.container}/>
+      </View>
+    </Provider>
     );
   }
 }
