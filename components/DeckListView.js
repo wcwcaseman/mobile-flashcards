@@ -3,16 +3,12 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { connect } from 'react-redux'
 import DeckDisplay from './DeckDisplay';
 
-
-
 class DeckListView extends Component {
 
     render() {
         return (
         <View> 
-        {this.props.Decks.map((deck) =>    
-            (<DeckDisplay key={deck} title={deck}/>)   
-            )}
+            {this.props.Decks.map((deck) => (<DeckDisplay key={deck} title={deck}/>))}
         </View> 
         );
       }

@@ -18,7 +18,7 @@ submit = () => {
   this.props.dispatch(addDeck(
     {
       title: this.state.title,
-      numberOfCards: 0   
+      questions: []  
     }))
 
   //reset state

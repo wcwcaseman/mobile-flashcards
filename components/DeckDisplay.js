@@ -5,11 +5,11 @@ import { connect } from 'react-redux'
 class DeckDisplay extends Component {
 
     render() {
-        const {deck} = this.props
+        const {deck, numberOfCards} = this.props
         return (
         <View> 
             <Text style={styles.deckNameText} >{deck.title}</Text>
-            <Text>{deck.numberOfCards} cards</Text> 
+            <Text>{numberOfCards} cards</Text> 
         </View> 
         );
       }
@@ -26,9 +26,11 @@ class DeckDisplay extends Component {
 function mapStateToProps ({ decks }, {title}) {
 
     const deck = decks[title];
+    const numberOfCards = deck.questions.length
 
     return {
-        deck: deck
+        deck: deck,
+        numberOfCards: numberOfCards
     }
   }
       
