@@ -3,17 +3,19 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { connect } from 'react-redux'
 
 
+
 class DeckListView extends Component {
 
     render() {
         return (
         <View>
+            <Text>Toast the world</Text>
         {this.props.Decks.map((deck) => {        
-            <View>
-                <Text>item</Text>
+
+                <Text key={deck} >item</Text>
 {/*             <Text style={styles.deckNameText} >{deck.title}</Text>
             <Text>{deck.numberOfCards} cards</Text> */}
-            </View>
+
             })}
         </View> 
         );
@@ -25,6 +27,7 @@ class DeckListView extends Component {
         deckNameText: {
             fontWeight: 'bold',
             fontSize: 30,
+            color:"red"
         }
       })
 

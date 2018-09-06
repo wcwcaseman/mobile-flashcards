@@ -11,7 +11,7 @@ function decks (state = {}, action) {
 
       return {
         ...state,
-        ...action.deck,
+        [action.deck.title]:action.deck,
       }
     default :
       return state

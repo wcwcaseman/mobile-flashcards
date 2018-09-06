@@ -10,7 +10,7 @@ function questions (state = {}, action) {
     case ADD_QUESTION :
       return {
         ...state,
-        ...action.question,
+        [action.question.title]:action.question,
       }
     default :
       return state
