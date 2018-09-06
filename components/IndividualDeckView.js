@@ -21,8 +21,7 @@ class IndividualDeckView extends Component {
     }
 
     homePage = () => {
-        ///need for debugging
-        this.props.navigation.navigate('DeckListView', this.props.title);
+        this.props.navigation.navigate('DeckListView');
     }
 
 
