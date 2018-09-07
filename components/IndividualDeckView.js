@@ -11,13 +11,14 @@ class IndividualDeckView extends Component {
     submitAddCard = () => {
 
         //Navigate to the Add card view/ New question view... need to pass in what deck
-        this.props.navigation.navigate('NewQuestionView', this.props.title);
+        debugger
+        this.props.navigation.navigate('NewQuestionView',{title : this.props.navigation.getParam('title')});
 
     }
 
     submitStartQuiz = () => {
         ///need to pass in what deck
-        this.props.navigation.navigate('QuizView', this.props.title);
+        this.props.navigation.navigate('QuizView', { title: this.props.navigation.getParam('title')});
     }
 
     homePage = () => {

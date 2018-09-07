@@ -10,14 +10,14 @@ class NewDeckView extends Component {
     title: ''
 };
 
-
-
 submit = () => {
+
+  const title = this.state.title
 
   // Update Redux
   this.props.dispatch(addDeck(
     {
-      title: this.state.title,
+      title: title,
       questions: []  
     }))
 
@@ -25,7 +25,7 @@ submit = () => {
   this.setState(() => ({ title: '' }))
 
   // Navigate to home
-  this.props.navigation.navigate('IndividualDeckView', {title: this.state.title});
+  this.props.navigation.navigate('IndividualDeckView', {title: title});
 
   // Save to "DB"
    // submitEntry({ key, entry })

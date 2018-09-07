@@ -26,6 +26,7 @@ class DeckDisplay extends Component {
 function mapStateToProps ({ decks }, {title}) {
 
     const deck = decks[title];
+    debugger;
     const numberOfCards = deck.questions.length
 
     return {

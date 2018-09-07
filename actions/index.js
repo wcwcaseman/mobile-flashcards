@@ -22,13 +22,13 @@ export function addDeck (deck) {
 export function receiveQuestions (questions) {
     return {
       type: RECEIVE_QUESTIONS,
-      decks,
+      questions,
     }
   }
 
-export function addQuestion (question) {
+export function addQuestion (card) {
   return {
     type: ADD_QUESTION,
-    deck,
+    card,
   }
 }

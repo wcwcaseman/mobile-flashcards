@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput,View,Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { connect } from 'react-redux'
+import { addQuestion } from '../actions'
 
 class NewQuestionView extends Component {
 
@@ -7,6 +9,26 @@ class NewQuestionView extends Component {
         question: '',
         answer: '' 
     };
+
+    submit = () => {
+
+        // Update Redux
+        this.props.dispatch(addQuestion(
+          {
+            question: this.state.question,
+            answer: this.state.answer,
+            title: this.props.navigation.getParam('title')  
+          }))
+      
+        //reset state
+        this.setState(() => ({ question: '', answer: '' }))
+
+        // Navigate to home
+        this.props.navigation.navigate('IndividualDeckView', {title: this.props.navigation.getParam('title')});
+      
+        // Save to "DB"
+         // submitEntry({ key, entry })
+      }
   
   render() {
     return (
@@ -24,7 +46,7 @@ class NewQuestionView extends Component {
             value={this.state.answer}
         />
         <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Submit</Text>
+            <Text style={styles.buttonText} onPress={this.submit} >Submit</Text>
         </TouchableOpacity>
     </View>
     );
@@ -55,4 +77,4 @@ const styles = StyleSheet.create({
 
 
 
-export default (NewQuestionView) 
+export default connect()(NewQuestionView) 
