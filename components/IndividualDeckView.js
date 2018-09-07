@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux'
 
 
 class IndividualDeckView extends Component {
@@ -11,7 +12,6 @@ class IndividualDeckView extends Component {
     submitAddCard = () => {
 
         //Navigate to the Add card view/ New question view... need to pass in what deck
-        debugger
         this.props.navigation.navigate('NewQuestionView',{title : this.props.navigation.getParam('title')});
 
     }
@@ -29,15 +29,12 @@ class IndividualDeckView extends Component {
     render() {
 
     /* 2. Get the param, provide a fallback value if not available */
-    const { navigation } = this.props;
-    const title = navigation.getParam('title')
-
-
+    const {deck, numberOfCards,navigation} = this.props
 
         return (
         <View>
-            <Text>{title}</Text>
-            <Text>{this.state.numberOfCards} cards</Text>
+            <Text>{deck.title}</Text>
+            <Text>{numberOfCards} cards</Text>
             <TouchableOpacity onPress={this.submitAddCard} style={styles.addCardButton}><Text>Add Card</Text></TouchableOpacity>
             <TouchableOpacity onPress={this.submitStartQuiz} style={styles.startQuizButton}><Text style={styles.startQuizButtonText} >Start Quiz</Text></TouchableOpacity>
             <Text>Go back to main page</Text>
@@ -60,6 +57,20 @@ const styles = StyleSheet.create({
     }
   })
   
+  function mapStateToProps ({ decks }, props) {
+debugger
+    const title = props.navigation.getParam('title')
+    const deck = decks[title];
+    const numberOfCards = deck.questions.length
+
+    return {
+        deck: deck,
+        numberOfCards: numberOfCards
+    }
+  }
+
+  export default connect(mapStateToProps)(IndividualDeckView)
 
 
-export default (IndividualDeckView)
+
+      
