@@ -5,10 +5,6 @@ import { connect } from 'react-redux'
 
 class IndividualDeckView extends Component {
 
-    state = { 
-        numberOfCards: 0
-    }
-
     submitAddCard = () => {
 
         //Navigate to the Add card view/ New question view... need to pass in what deck
@@ -29,7 +25,7 @@ class IndividualDeckView extends Component {
     render() {
 
     /* 2. Get the param, provide a fallback value if not available */
-    const {deck, numberOfCards,navigation} = this.props
+    const {deck, numberOfCards} = this.props
 
         return (
         <View>
