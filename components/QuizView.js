@@ -6,36 +6,77 @@ import { connect } from 'react-redux'
 class QuizView extends Component {
 
     state = { 
-        cardQuestion: 'Question',
-        cardAnswer: 'Answer',
         viewAnswer: true,
-        cardNumber: 0,
-        percentageCorrect: 0
+        takingQuiz: true,
+        cardIndex: 0,
+        numberCorrect: 0
     }
 
     submitCorrect = () => {
+        this.setState((state) => ({ numberCorrect: state.numberCorrect + 1 }))   
+        this.moveToNextCard()
     }
 
     submitIncorrect = () => {
+        this.moveToNextCard()
+    }
+
+    moveToNextCard = () => {
+        
+        if(this.state.cardIndex < this.props.deck.questions - 1)
+        { 
+            this.setState((state) => ({ cardIndex: state.cardIndex + 1 }))
+        }
+        else{
+            this.setState(() => ({ takingQuiz: false }))
+            
+        }
     }
 
     flipCard = () => {
         this.setState(() => ({ viewAnswer:  this.state.viewAnswer === true ? false : true }))    
     }
 
-  render() {
+    submitRestartQuiz = () => {
+        this.setState(() => ({ 
+            cardIndex: 0,
+            numberCorrect: 0,
+            viewAnswer: true,
+            takingQuiz: true,     
+        }))
+    }
 
+    submitEditDeck = () => {
+        this.props.navigation.navigate('IndividualDeckView', {title: this.props.navigation.getParam('title')});
+    }
+
+  render() {
     const {deck, numberOfCards} = this.props
     return (
+
+    <View>       
+        <Text>{this.state.cardIndex + 1} / {numberOfCards} </Text>
+
+{
+     this.state.takingQuiz === true ?
     <View>
-        <Text>{this.state.cardNumber} / {numberOfCards} </Text>
-        {this.state.viewAnswer === true ? <Text>{this.state.cardQuestion}</Text> : <Text>{this.state.cardAnswer}</Text>} 
+        {this.state.viewAnswer === true ? <Text>{deck.questions[this.state.cardIndex].question}</Text> : <Text>{deck.questions[this.state.cardIndex].answer}</Text>} 
         <TouchableOpacity onPress={this.flipCard}>
         {this.state.viewAnswer === true ? <Text style={styles.smallButtonText}>Answer</Text> : <Text style={styles.smallButtonText}>Question</Text>}        
         </TouchableOpacity>
         <TouchableOpacity onPress={this.submitCorrect} style={styles.correctButton}><Text>Correct</Text></TouchableOpacity>
         <TouchableOpacity onPress={this.submitIncorrect} style={styles.inCorrectButton}><Text>Incorrect</Text></TouchableOpacity>
+     </View>
+: 
+    <View>
+        <Text>Score</Text>
+        <Text>{this.state.numberCorrect/(this.state.cardIndex + 1) * 100} % Correct</Text>
+        <TouchableOpacity onPress={this.submitRestartQuiz} style={styles.restartQuizButton}><Text>Restart Quiz</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text>Edit Deck</Text></TouchableOpacity>
     </View>
+}
+   </View>
+
     );
   }
 }
@@ -47,6 +88,12 @@ const styles = StyleSheet.create({
     inCorrectButton: {
         backgroundColor:'red'
     },
+    restartQuizButton: {
+        backgroundColor:'black'
+    },
+    editDeck: {
+        backgroundColor:'blue'
+    },
     smallButtonText: {
         textAlign:'center',
         color:'red',
@@ -55,7 +102,7 @@ const styles = StyleSheet.create({
   
 
   function mapStateToProps ({ decks }, props) {
-    debugger
+
         const title = props.navigation.getParam('title')
         const deck = decks[title];
         const numberOfCards = deck.questions.length
