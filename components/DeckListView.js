@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { connect } from 'react-redux'
 import DeckDisplay from './DeckDisplay';
+
+
+
 
 class DeckListView extends Component {
 
     render() {
         return (
         <View> 
-            {this.props.Decks.map((deck) => (<DeckDisplay key={deck} title={deck}/>))}
+            <FlatList
+            data={this.props.Decks}
+            renderItem={({item}) => <DeckDisplay title={item.title}></DeckDisplay>}
+            keyExtractor={item => item.title} 
+            />           
         </View> 
         );
       }
@@ -21,7 +28,7 @@ function mapStateToProps ({ decks, quesitons }) {
 
     if(decks !== {} && decks !== null)
     {  
-        Decks = Object.keys(decks);
+        Decks = Object.values(decks)
     }
   
     return {
