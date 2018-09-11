@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { connect } from 'react-redux'
 
 
+
 class QuizView extends Component {
 
     state = { 
@@ -28,8 +29,7 @@ class QuizView extends Component {
             this.setState((state) => ({ cardIndex: state.cardIndex + 1 }))
         }
         else{
-            this.setState(() => ({ takingQuiz: false }))
-            
+            this.setState(() => ({ takingQuiz: false })) 
         }
     }
 
@@ -52,9 +52,10 @@ class QuizView extends Component {
 
   render() {
     const {deck, numberOfCards} = this.props
-    return (
 
-    <View>       
+    if(deck.questions.length > 0){
+    
+   view = <View>       
         <Text>{this.state.cardIndex + 1} / {numberOfCards} </Text>
 
 {
@@ -76,8 +77,16 @@ class QuizView extends Component {
     </View>
 }
    </View>
+}else{
+    view = <View>
+            <Text>You must add cards to your deck before you start your quiz</Text>
+            <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text>Edit Deck</Text></TouchableOpacity>
+        </View>
 
-    );
+}
+
+return (view)
+
   }
 }
 
