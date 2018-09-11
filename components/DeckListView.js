@@ -8,12 +8,14 @@ import DeckDisplay from './DeckDisplay';
 
 class DeckListView extends Component {
 
+
+
     render() {
         return (
         <View> 
             <FlatList
             data={this.props.Decks}
-            renderItem={({item}) => <DeckDisplay title={item.title}></DeckDisplay>}
+            renderItem={({item}) => <DeckDisplay navigation={this.props.navigation} title={item.title}></DeckDisplay>}
             keyExtractor={item => item.title} 
             />           
         </View> 

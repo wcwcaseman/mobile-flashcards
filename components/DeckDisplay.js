@@ -4,13 +4,17 @@ import { connect } from 'react-redux'
 
 class DeckDisplay extends Component {
 
+    goToDeckView = () => {
+        this.props.navigation.navigate('IndividualDeckView', {title: this.props.title});  
+    }
+
     render() {
         const {deck, numberOfCards} = this.props
         return (
-        <View> 
+        <TouchableOpacity onPress={this.goToDeckView}> 
             <Text style={styles.deckNameText} >{deck.title}</Text>
             <Text>{numberOfCards} cards</Text> 
-        </View> 
+        </TouchableOpacity> 
         );
       }
     }
@@ -23,10 +27,9 @@ class DeckDisplay extends Component {
         }
       })
 
-function mapStateToProps ({ decks }, {title}) {
+function mapStateToProps ({ decks }, {title}, props) {
 
     const deck = decks[title];
-    debugger;
     const numberOfCards = deck.questions.length
 
     return {

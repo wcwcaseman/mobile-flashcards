@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   })
   
   function mapStateToProps ({ decks }, props) {
-debugger
+
     const title = props.navigation.getParam('title')
     const deck = decks[title];
     const numberOfCards = deck.questions.length
