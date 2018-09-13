@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { connect } from 'react-redux'
 import DeckDisplay from './DeckDisplay';
+import { getDecks } from '../utils/api'
+import { receiveDecks } from '../actions'
 
 
 
 
 class DeckListView extends Component {
 
+    componentDidMount () {
+        const { dispatch } = this.props
+    
+        getDecks()
+          .then((decks) => dispatch(receiveDecks(decks)))
 
+      }
 
     render() {
         return (

@@ -47,9 +47,9 @@ const Tabs = createMaterialTopTabNavigator({
   },
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? 'purple' : 'white',
+    activeTintColor: Platform.OS === 'ios' ? '#00afff' : 'white',
     style: {
-      backgroundColor: Platform.OS === 'ios' ? 'white' : 'purple',
+      backgroundColor: Platform.OS === 'ios' ? 'white' : '#00afff',
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
@@ -95,7 +95,7 @@ class App extends React.Component {
     return (
     <Provider store={createStore(reducer)}>
       <View style={{flex: 1}}>
-        <UdaciStatusBar backgroundColor={'purple'} barStyle="light-content" />
+        <UdaciStatusBar backgroundColor={'#00afff'} barStyle="light-content" />
         <MainNavigator style={styles.container}/>
       </View>
     </Provider>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { addDeck } from '../actions'
+import { saveDeck } from '../utils/api'
 
 //Once the new deck is submited route to the IndividualDeckView
 
@@ -26,9 +27,16 @@ submit = () => {
 
   // Navigate to home
   this.props.navigation.navigate('IndividualDeckView', {title: title});
-
+ try{
   // Save to "DB"
-   // submitEntry({ key, entry })
+  saveDeck({
+    title: title,
+    questions: []  
+  })
+
+}catch(e){
+  debugger
+}
 }
 
   render() {

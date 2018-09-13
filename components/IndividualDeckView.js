@@ -28,9 +28,9 @@ class IndividualDeckView extends Component {
     const {deck, numberOfCards} = this.props
 
         return (
-        <View>
-            <Text>{deck.title}</Text>
-            <Text>{numberOfCards} cards</Text>
+        <View style={styles.container}>
+            <Text style={styles.title} >{deck.title}</Text>
+            <Text style={styles.subTitle} >{numberOfCards} cards</Text>
             <TouchableOpacity onPress={this.submitAddCard} style={styles.addCardButton}><Text>Add Card</Text></TouchableOpacity>
             <TouchableOpacity onPress={this.submitStartQuiz} style={styles.startQuizButton}><Text style={styles.startQuizButtonText} >Start Quiz</Text></TouchableOpacity>
             <Text>Go back to main page</Text>
@@ -42,15 +42,54 @@ class IndividualDeckView extends Component {
     
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1, 
+        flexDirection: 'column', //the default direction
+        padding: 20,
+        margin: 10,
+        alignItems: 'stretch',
+        //justifyContent: 'center',
+
+    },
+    row:{
+        flexDirection: 'row'
+    },
+    title:{
+        fontSize: 30,
+        fontWeight: 'bold',
+        alignSelf: 'center'
+    },
+    subTitle:{
+        fontSize: 20,
+        alignSelf: 'center',
+        color: 'grey'
+    },
     addCardButton: {
-        backgroundColor:'white'
+        backgroundColor:'white',
+        borderWidth: 1,
+        borderColor: 'black',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        margin: 10,
+        height: 45,
+        borderRadius: 3,
     },
     startQuizButton: {
-        backgroundColor:'black'
+        backgroundColor:'black',
+        borderWidth: 1,
+        borderColor: 'white',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        margin: 10,
+        height: 45,
+        borderRadius: 3,
     },
     startQuizButtonText: {
         color:'white'
     }
+
   })
   
   function mapStateToProps ({ decks }, props) {
