@@ -41,8 +41,8 @@ submit = () => {
 
   render() {
     return (
-    <View>
-          <Text>What is the title of your new deck?</Text>
+    <View style={styles.container} >
+          <Text style={styles.titleLarge}>What is the title of your new deck?</Text>
           <TextInput
           style={styles.textInput}
           onChangeText={(title) => this.setState({title})}
@@ -56,17 +56,39 @@ submit = () => {
   }
 }
 const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    flexDirection: 'column', //the default direction
+    padding: 20,
+    margin: 10,
+    alignItems: 'stretch',
+    //justifyContent: 'center',
+},
+titleLarge:{
+  fontSize: 40,
+  fontWeight: 'bold',
+  alignSelf: 'center'
+},
   textInput: 
   {
-      height: 40,
-      width: 100,
+      height: 45,
       borderColor: 'gray',
       borderWidth: 1,
-      margin:5,
+      margin:20,
+      padding: 10,
       borderRadius:10
   },
   button: {
-      backgroundColor:'blue'
+    backgroundColor:'black',
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    margin: 20,
+    height: 45,
+    borderRadius: 10,
+    alignSelf: 'center'
     },
   buttonText: {
       textAlign:'center',

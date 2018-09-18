@@ -31,8 +31,10 @@ class IndividualDeckView extends Component {
         <View style={styles.container}>
             <Text style={styles.title} >{deck.title}</Text>
             <Text style={styles.subTitle} >{numberOfCards} cards</Text>
-            <TouchableOpacity onPress={this.submitAddCard} style={styles.addCardButton}><Text>Add Card</Text></TouchableOpacity>
-            <TouchableOpacity onPress={this.submitStartQuiz} style={styles.startQuizButton}><Text style={styles.startQuizButtonText} >Start Quiz</Text></TouchableOpacity>
+            <View>
+                <TouchableOpacity onPress={this.submitAddCard} style={styles.addCardButton}><Text>Add Card</Text></TouchableOpacity>
+                <TouchableOpacity onPress={this.submitStartQuiz} style={styles.startQuizButton}><Text style={styles.startQuizButtonText} >Start Quiz</Text></TouchableOpacity>
+            </View>
             <Text>Go back to main page</Text>
             <TouchableOpacity onPress={this.homePage} ><Text>Home Page</Text></TouchableOpacity>
         </View>
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
 
     },
     row:{
-        flexDirection: 'row'
+
     },
     title:{
         fontSize: 30,
@@ -73,7 +75,8 @@ const styles = StyleSheet.create({
         paddingRight: 30,
         margin: 10,
         height: 45,
-        borderRadius: 3,
+        borderRadius: 10,
+        alignSelf: 'center'
     },
     startQuizButton: {
         backgroundColor:'black',
@@ -84,7 +87,8 @@ const styles = StyleSheet.create({
         paddingRight: 30,
         margin: 10,
         height: 45,
-        borderRadius: 3,
+        borderRadius: 10,
+        alignSelf: 'center'
     },
     startQuizButtonText: {
         color:'white'
