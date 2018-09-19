@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TextInput,View,Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux'
 import { addQuestion } from '../actions'
+import { addCardToDeck } from '../utils/api'
 
 class NewQuestionView extends Component {
 
@@ -20,14 +21,22 @@ class NewQuestionView extends Component {
             title: this.props.navigation.getParam('title')  
           }))
       
+        // Save to "DB"
+        addCardToDeck(
+            { 
+                question: this.state.question,
+                answer: this.state.answer,
+                title: this.props.navigation.getParam('title')
+            }
+        )
+
         //reset state
         this.setState(() => ({ question: '', answer: '' }))
 
         // Navigate to home
         this.props.navigation.navigate('IndividualDeckView', {title: this.props.navigation.getParam('title')});
       
-        // Save to "DB"
-         // submitEntry({ key, entry })
+
       }
   
   render() {
