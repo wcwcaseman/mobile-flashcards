@@ -41,7 +41,7 @@ class NewQuestionView extends Component {
   
   render() {
     return (
-    <View>
+    <View style={styles.container}>
         <Text style={styles.text}>Question</Text>
         <TextInput
             style={styles.textInput}
@@ -63,17 +63,36 @@ class NewQuestionView extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1, 
+        flexDirection: 'column', //the default direction
+        padding: 20,
+        margin: 10,
+        alignItems: 'stretch',
+        //justifyContent: 'center',
+
+    },
     textInput: 
     {
         height: 40,
-        width: 100,
         borderColor: 'gray',
         borderWidth: 1,
         margin:5,
+        marginTop:10,
+        marginBottom:20,
         borderRadius:10
     },
     button: {
-        backgroundColor:'blue'
+        backgroundColor:'black',
+        borderWidth: 1,
+        borderColor: 'white',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        margin: 10,
+        height: 45,
+        borderRadius: 10,
+        alignSelf: 'center',
       },
     buttonText: {
         textAlign:'center',
