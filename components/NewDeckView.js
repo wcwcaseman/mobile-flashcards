@@ -8,11 +8,14 @@ import { saveDeckTitle } from '../utils/api'
 
 class NewDeckView extends Component {
   state = { 
-    title: ''
+    title: '',
+    validTitle: false,
+    showValidationMessages: false
 };
 
 submit = () => {
 
+  if(this.state.validTitle === true){
   const title = this.state.title
 
   // Update Redux
@@ -23,21 +26,35 @@ submit = () => {
     }))
 
   //reset state
-  this.setState(() => ({ title: '' }))
+  this.setState(() => ({ title: '', validTitle: false, showValidationMessages: false }))
 
   // Navigate to home
   this.props.navigation.navigate('IndividualDeckView', {title: title});
- try{
-  // Save to "DB"
-  saveDeckTitle({
-    title: title,
-    questions: []  
-  })
+  try{
+    // Save to "DB"
+    saveDeckTitle({
+      title: title,
+      questions: []  
+    })
+  }catch(e){}
 
-}catch(e){
-  debugger
+  }else{
+    this.setState(() => ({ showValidationMessages: true}))
+  }
+
+
 }
+
+titleChange = (title) => {
+  this.setState({title})
+  if(title){
+      this.setState({validTitle: true}) 
+  }else{
+      this.setState({validTitle: false}) 
+  }
 }
+
+
 
   render() {
     return (
@@ -45,11 +62,12 @@ submit = () => {
           <Text style={styles.titleLarge}>What is the title of your new deck?</Text>
           <TextInput
           style={styles.textInput}
-          onChangeText={(title) => this.setState({title})}
+          onChangeText={this.titleChange}
           value={this.state.title}
           />
+    {(this.state.validTitle === false && this.state.showValidationMessages === true) ? <Text style={styles.errorText}>Please enter a title</Text> : <View></View>}
         <TouchableOpacity style={styles.button} onPress={this.submit}>
-            <Text style={styles.buttonText}>Submit</Text>
+            <Text style={styles.buttonText}>Create Deck</Text>
         </TouchableOpacity>
     </View>
     );
@@ -96,6 +114,9 @@ titleLarge:{
   },
   text: {
       textAlign:'center',
+  },
+  errorText:{
+      color: 'red'
   }
 })
 

@@ -3,12 +3,7 @@ export const DECK_STORAGE_KEY = 'MobileFlashCards:Decks'
 
  //return all of the decks along with their titles, questions, and answers.
 export function getDecks () {
-    var x = AsyncStorage.getItem(DECK_STORAGE_KEY)
-    .then((results) =>  
-    {
-    return JSON.parse(results)
-    }).catch((e) => {});
-    return x;
+    return AsyncStorage.getItem(DECK_STORAGE_KEY).then((results) =>  { return JSON.parse(results)}).catch((e) => {});
 }
  
 // take in a single title argument and add it to the decks. 

@@ -35,7 +35,13 @@ class NewQuestionView extends Component {
         )
 
         //reset state
-        this.setState(() => ({ question: '', answer: '' }))
+        this.setState(() => ({ 
+            question: '',
+            answer: '',
+            validQuestion: false,
+            validAnswer: false,
+            showValidationMessages: false 
+    }))
 
         // Navigate to home
         this.props.navigation.navigate('IndividualDeckView', {title: this.props.navigation.getParam('title')});

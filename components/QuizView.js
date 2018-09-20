@@ -77,7 +77,7 @@ class QuizView extends Component {
         <Text style={styles.scoreText} >{this.state.numberCorrect/(this.state.cardIndex + 1) * 100} % Correct</Text>
         <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={this.submitRestartQuiz} style={styles.restartQuizButton}><Text style={styles.buttonText}>Restart Quiz</Text></TouchableOpacity>
-            <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text style={styles.buttonText}>Edit Deck</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text style={styles.buttonText}>Back to Deck</Text></TouchableOpacity>
         </View>
     </View>
 }
@@ -86,7 +86,7 @@ class QuizView extends Component {
     view = <View style={styles.container} >
             <Text style={styles.titleMedium} >You must add cards to your deck before you start your quiz</Text>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text style={styles.buttonText}>Edit Deck</Text></TouchableOpacity>
+                <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text style={styles.buttonText}>Back to Deck</Text></TouchableOpacity>
             </View>
         </View>
 
