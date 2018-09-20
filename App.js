@@ -72,19 +72,31 @@ const MainNavigator = createStackNavigator({
   IndividualDeckView: {
     screen: IndividualDeckView,
     navigationOptions: {
-      header: null
+      title: "Deck",
+      headerTintColor: 'white',
+      headerStyle:{
+        backgroundColor: 'black'
+      }
     } 
   },
   NewQuestionView: {
     screen: NewQuestionView,
     navigationOptions: {
-      header: null
+      title: "New Question",
+      headerTintColor: 'white',
+      headerStyle:{
+        backgroundColor: 'black'
+      }
     } 
   },
   QuizView: {
     screen: QuizView,
     navigationOptions: {
-      header: null
+      title: "Quiz",
+      headerTintColor: 'white',
+      headerStyle:{
+        backgroundColor: 'black'
+      }
     } 
   }
 })

@@ -56,7 +56,7 @@ class QuizView extends Component {
 
     if(deck.questions.length > 0){
     
-   view = <View>       
+   view = <View style={styles.container} >       
         <Text style={styles.cardPosition} >{this.state.cardIndex + 1} / {numberOfCards} </Text>
 
 {
@@ -83,9 +83,11 @@ class QuizView extends Component {
 }
    </View>
 }else{
-    view = <View>
-            <Text style={styles.titleLarge} >You must add cards to your deck before you start your quiz</Text>
-            <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text>Edit Deck</Text></TouchableOpacity>
+    view = <View style={styles.container} >
+            <Text style={styles.titleMedium} >You must add cards to your deck before you start your quiz</Text>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text style={styles.buttonText}>Edit Deck</Text></TouchableOpacity>
+            </View>
         </View>
 
 }
@@ -96,8 +98,22 @@ return (view)
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1, 
+        flexDirection: 'column', //the default direction
+        padding: 10,
+        margin: 10,
+        alignItems: 'stretch',
+        //justifyContent: 'center',
+
+    },
     titleLarge:{
         fontSize: 40,
+        fontWeight: 'bold',
+        alignSelf: 'center'
+      },
+      titleMedium:{
+        fontSize: 20,
         fontWeight: 'bold',
         alignSelf: 'center'
       },
