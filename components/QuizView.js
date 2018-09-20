@@ -23,12 +23,13 @@ class QuizView extends Component {
     }
 
     moveToNextCard = () => {
-        
-        if(this.state.cardIndex < this.props.deck.questions - 1)
+        if(this.state.cardIndex < this.props.deck.questions.length - 1)
         { 
             this.setState((state) => ({ cardIndex: state.cardIndex + 1 }))
         }
-        else{
+
+        if(this.state.cardIndex == this.props.deck.questions.length - 1)
+        {
             this.setState(() => ({ takingQuiz: false })) 
         }
     }
@@ -56,30 +57,34 @@ class QuizView extends Component {
     if(deck.questions.length > 0){
     
    view = <View>       
-        <Text>{this.state.cardIndex + 1} / {numberOfCards} </Text>
+        <Text style={styles.cardPosition} >{this.state.cardIndex + 1} / {numberOfCards} </Text>
 
 {
      this.state.takingQuiz === true ?
     <View>
-        {this.state.viewAnswer === true ? <Text>{deck.questions[this.state.cardIndex].question}</Text> : <Text>{deck.questions[this.state.cardIndex].answer}</Text>} 
+        {this.state.viewAnswer === true ? <Text style={styles.titleLarge} >{deck.questions[this.state.cardIndex].question}</Text> : <Text style={styles.titleLarge} >{deck.questions[this.state.cardIndex].answer}</Text>} 
         <TouchableOpacity onPress={this.flipCard}>
         {this.state.viewAnswer === true ? <Text style={styles.smallButtonText}>Answer</Text> : <Text style={styles.smallButtonText}>Question</Text>}        
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.submitCorrect} style={styles.correctButton}><Text>Correct</Text></TouchableOpacity>
-        <TouchableOpacity onPress={this.submitIncorrect} style={styles.inCorrectButton}><Text>Incorrect</Text></TouchableOpacity>
+        <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={this.submitCorrect} style={styles.correctButton}><Text style={styles.buttonText}>Correct</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.submitIncorrect} style={styles.inCorrectButton}><Text style={styles.buttonText}>Incorrect</Text></TouchableOpacity>
+        </View>
      </View>
 : 
     <View>
-        <Text>Score</Text>
-        <Text>{this.state.numberCorrect/(this.state.cardIndex + 1) * 100} % Correct</Text>
-        <TouchableOpacity onPress={this.submitRestartQuiz} style={styles.restartQuizButton}><Text>Restart Quiz</Text></TouchableOpacity>
-        <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text>Edit Deck</Text></TouchableOpacity>
+        <Text style={styles.scoreHeader} >Score</Text>
+        <Text style={styles.scoreText} >{this.state.numberCorrect/(this.state.cardIndex + 1) * 100} % Correct</Text>
+        <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={this.submitRestartQuiz} style={styles.restartQuizButton}><Text style={styles.buttonText}>Restart Quiz</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text style={styles.buttonText}>Edit Deck</Text></TouchableOpacity>
+        </View>
     </View>
 }
    </View>
 }else{
     view = <View>
-            <Text>You must add cards to your deck before you start your quiz</Text>
+            <Text style={styles.titleLarge} >You must add cards to your deck before you start your quiz</Text>
             <TouchableOpacity onPress={this.submitEditDeck} style={styles.editDeck}><Text>Edit Deck</Text></TouchableOpacity>
         </View>
 
@@ -91,22 +96,88 @@ return (view)
 }
 
 const styles = StyleSheet.create({
+    titleLarge:{
+        fontSize: 40,
+        fontWeight: 'bold',
+        alignSelf: 'center'
+      },
+        buttonContainer:{
+            alignSelf: 'center'
+        },
     correctButton: {
-        backgroundColor:'green'
+        backgroundColor:'green',
+        borderWidth: 1,
+        borderColor: 'white',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        margin: 20,
+        height: 45,
+        borderRadius: 10,
+
     },
     inCorrectButton: {
-        backgroundColor:'red'
+        backgroundColor:'red',
+        borderWidth: 1,
+        borderColor: 'white',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        margin: 20,
+        height: 45,
+        borderRadius: 10,
+
     },
     restartQuizButton: {
-        backgroundColor:'black'
+        backgroundColor:'black',
+        borderWidth: 1,
+        borderColor: 'white',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        margin: 20,
+        height: 45,
+        borderRadius: 10,
     },
     editDeck: {
-        backgroundColor:'blue'
+        backgroundColor:'blue',
+        borderWidth: 1,
+        borderColor: 'white',
+        padding: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
+        margin: 20,
+        height: 45,
+        borderRadius: 10,
+    },
+    buttonText: {
+        textAlign:'center',
+        color:'white',
     },
     smallButtonText: {
         textAlign:'center',
         color:'red',
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginBottom: 20
+    },
+    cardPosition: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        margin: 5,
+        marginBottom: 20
+    },
+    scoreHeader:{
+        marginLeft: 5,
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    scoreText:{
+        marginLeft: 5,
+        fontSize: 20,
+        marginBottom: 20
     }
+
   })
   
 
