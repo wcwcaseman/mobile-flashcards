@@ -11,14 +11,9 @@ export function getDecks () {
     return x;
 }
  
-// take in a single id argument and return the deck associated with that id. 
-export function getDeck (id) {
-    return AsyncStorage.getItem(id);
-}
-
 // take in a single title argument and add it to the decks. 
 export function saveDeck (deck) {
-    return AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify({[deck.title]: deck}));
+    return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({[deck.title]: deck}));
 }
 
 // Will add the card to the list of questions for the deck with the associated title. 

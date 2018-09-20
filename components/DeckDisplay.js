@@ -11,19 +11,30 @@ class DeckDisplay extends Component {
     render() {
         const {deck, numberOfCards} = this.props
         return (
-        <TouchableOpacity onPress={this.goToDeckView}> 
+        <TouchableOpacity style={styles.listItem} onPress={this.goToDeckView}> 
             <Text style={styles.deckNameText} >{deck.title}</Text>
-            <Text>{numberOfCards} cards</Text> 
+            <Text style={styles.deckCardsText} >{numberOfCards} cards</Text> 
         </TouchableOpacity> 
         );
       }
     }
    
     const styles = StyleSheet.create({
+        listItem:{
+            borderBottomWidth: 2,
+            borderBottomColor: 'grey',
+            borderStyle: 'solid',
+            padding: 10
+        },
         deckNameText: {
             fontWeight: 'bold',
-            fontSize: 30,
-            color:"red"
+            fontSize: 24,
+            alignSelf: 'center'
+        },
+        deckCardsText: {
+            color: 'grey',
+            fontSize: 14,
+            alignSelf: 'center'
         }
       })
 

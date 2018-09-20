@@ -49,7 +49,7 @@ const Tabs = createMaterialTopTabNavigator({
   tabBarOptions: {
     activeTintColor: Platform.OS === 'ios' ? '#00afff' : 'white',
     style: {
-      backgroundColor: Platform.OS === 'ios' ? 'white' : '#00afff',
+      backgroundColor: Platform.OS === 'ios' ? 'black' : '#00afff',
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
