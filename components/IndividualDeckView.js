@@ -6,21 +6,14 @@ import { connect } from 'react-redux'
 class IndividualDeckView extends Component {
 
     submitAddCard = () => {
-
         //Navigate to the Add card view/ New question view... need to pass in what deck
         this.props.navigation.navigate('NewQuestionView',{title : this.props.navigation.getParam('title')});
-
     }
 
     submitStartQuiz = () => {
         ///need to pass in what deck
         this.props.navigation.navigate('QuizView', { title: this.props.navigation.getParam('title')});
     }
-
-    homePage = () => {
-        this.props.navigation.navigate('DeckListView');
-    }
-
 
     render() {
 
@@ -35,8 +28,6 @@ class IndividualDeckView extends Component {
                 <TouchableOpacity onPress={this.submitAddCard} style={styles.addCardButton}><Text>Add Card</Text></TouchableOpacity>
                 <TouchableOpacity onPress={this.submitStartQuiz} style={styles.startQuizButton}><Text style={styles.startQuizButtonText} >Start Quiz</Text></TouchableOpacity>
             </View>
-            <Text>Go back to main page</Text>
-            <TouchableOpacity onPress={this.homePage} ><Text>Home Page</Text></TouchableOpacity>
         </View>
         );
       }
@@ -51,9 +42,6 @@ const styles = StyleSheet.create({
         margin: 10,
         alignItems: 'stretch',
         //justifyContent: 'center',
-
-    },
-    row:{
 
     },
     title:{

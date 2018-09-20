@@ -12,7 +12,7 @@ export function getDecks () {
 }
  
 // take in a single title argument and add it to the decks. 
-export function saveDeck (deck) {
+export function saveDeckTitle(deck) {
     return AsyncStorage.mergeItem(DECK_STORAGE_KEY, JSON.stringify({[deck.title]: deck}));
 }
 

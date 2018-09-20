@@ -25,13 +25,13 @@ const Tabs = createMaterialTopTabNavigator({
   DeckListView: {
     screen: DeckListView,
     navigationOptions: {
-      tabBarLabel: 'DeckListView',
+      tabBarLabel: 'Decks',
     }
   },
   NewDeckView: {
     screen: NewDeckView,
     navigationOptions: {
-      tabBarLabel: 'NewDeckView',
+      tabBarLabel: 'New Deck',
     }
   }
 

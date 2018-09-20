@@ -8,11 +8,15 @@ class NewQuestionView extends Component {
 
     state = { 
         question: '',
-        answer: '' 
+        answer: '',
+        validQuestion: false,
+        validAnswer: false,
+        showValidationMessages: false
     };
 
     submit = () => {
 
+        if(this.state.validQuestion === true && this.state.validAnswer === true){
         // Update Redux
         this.props.dispatch(addQuestion(
           {
@@ -35,27 +39,53 @@ class NewQuestionView extends Component {
 
         // Navigate to home
         this.props.navigation.navigate('IndividualDeckView', {title: this.props.navigation.getParam('title')});
-      
+        }else{
+            this.setState(() => ({ showValidationMessages: true}))
+        }
 
+      }
+
+      questionTextChanged = (question) => {
+        this.setState({question})
+        if(question){
+            this.setState({validQuestion: true}) 
+        }else{
+            this.setState({validQuestion: false}) 
+        }
+      }
+
+      answerTextChanged = (answer) => {
+        this.setState({answer})
+        if(answer){
+            this.setState({validAnswer: true}) 
+        }else{
+            this.setState({validAnswer: false}) 
+        }
       }
   
   render() {
     return (
     <View style={styles.container}>
-        <Text style={styles.text}>Question</Text>
-        <TextInput
-            style={styles.textInput}
-            onChangeText={(question) => this.setState({question})}
-            value={this.state.question}
-        />
-        <Text style={styles.text}>Answer</Text>
-        <TextInput
-            style={styles.textInput}
-            onChangeText={(answer) => this.setState({answer})}
-            value={this.state.answer}
-        />
+        <View style={styles.inputContainer} >
+            <Text style={styles.text}>Question</Text>
+            <TextInput
+                style={styles.textInput}
+                onChangeText={this.questionTextChanged}
+                value={this.state.question}
+            />
+            {(this.state.validQuestion === false && this.state.showValidationMessages === true) ? <Text style={styles.errorText}>Please enter a question</Text> : <View></View>} 
+        </View>
+        <View style={styles.inputContainer} >
+            <Text style={styles.text}>Answer</Text>
+            <TextInput
+                style={styles.textInput}
+                onChangeText={this.answerTextChanged}
+                value={this.state.answer}
+            />
+            {(this.state.validAnswer === false && this.state.showValidationMessages === true) ? <Text style={styles.errorText}>Please enter an answer</Text> : <View></View>}
+        </View>
         <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText} onPress={this.submit} >Submit</Text>
+                <Text style={styles.buttonText} onPress={this.submit} >Submit</Text>
         </TouchableOpacity>
     </View>
     );
@@ -72,6 +102,9 @@ const styles = StyleSheet.create({
         //justifyContent: 'center',
 
     },
+    inputContainer:{
+        marginBottom:20
+    },
     textInput: 
     {
         height: 40,
@@ -79,7 +112,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         margin:5,
         marginTop:10,
-        marginBottom:20,
         borderRadius:10
     },
     button: {
@@ -100,6 +132,9 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign:'center',
+    },
+    errorText:{
+        color: 'red'
     }
   })
 
