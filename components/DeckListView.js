@@ -13,8 +13,8 @@ class DeckListView extends Component {
     componentDidMount () {
         const { dispatch } = this.props
     
-        getDecks()
-          .then((decks) => dispatch(receiveDecks(decks)))
+        //Get all decks saved to local storage
+        getDecks().then((decks) => dispatch(receiveDecks(decks)))
 
       }
 

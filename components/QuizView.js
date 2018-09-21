@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 
 
@@ -28,9 +29,11 @@ class QuizView extends Component {
             this.setState((state) => ({ cardIndex: state.cardIndex + 1 }))
         }
 
+        //Quiz is completed, navigate to score and set clear take quiz notification
         if(this.state.cardIndex == this.props.deck.questions.length - 1)
         {
-            this.setState(() => ({ takingQuiz: false })) 
+            this.setState(() => ({ takingQuiz: false }))
+            clearLocalNotification()
         }
     }
 
